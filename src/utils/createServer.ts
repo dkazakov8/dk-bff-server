@@ -13,7 +13,7 @@ export function createServer(params: TypeRunServerParams) {
   return {
     app: express(),
     port: params.https ? SSL_PORT : params.port,
-    start() {
+    start(): Promise<https.Server | http.Server> {
       const nodeServer = params.https
         ? https.createServer(sslOptions, this.app)
         : http.createServer(this.app);
@@ -26,7 +26,7 @@ export function createServer(params: TypeRunServerParams) {
           // eslint-disable-next-line no-console
           console.log(`started on`, link);
 
-          resolve(this);
+          resolve(nodeServer);
         });
       });
     },

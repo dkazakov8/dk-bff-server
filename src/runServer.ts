@@ -1,3 +1,6 @@
+import http from 'http';
+import https from 'https';
+
 import { createServer } from './utils';
 import { handleMeasure } from './middlewares/common/handleMeasure';
 import { handleCompression } from './middlewares/common/handleCompression';
@@ -10,8 +13,8 @@ import { handleGetAppVersion } from './middlewares/route/handleGetAppVersion';
 import { handleMissingRoutes } from './middlewares/route/handleMissingRoutes';
 import { TypeRunServerParams } from './types';
 
-export const runServer = (params: TypeRunServerParams) => {
-  Promise.resolve()
+export const runServer = (params: TypeRunServerParams): Promise<https.Server | http.Server> => {
+  return Promise.resolve()
     .then(() =>
       createServer(params)
         .useMiddlewares([

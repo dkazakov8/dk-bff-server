@@ -2,7 +2,7 @@
   "name": "dk-bff-server",
   "author": "Dmitry Kazakov",
   "license": "MIT",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dkazakov8/dk-bff-server.git"
