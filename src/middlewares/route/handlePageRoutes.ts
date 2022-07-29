@@ -40,7 +40,10 @@ export const handlePageRoutes: TypeMiddleware = (app, params) => {
           .replace(/(\.js)"/g, `$1.${acceptedCompression.extension}"`)
           .replace(/(\.css)"/g, `$1.${acceptedCompression.extension}"`);
       })
-      .then((modTemplate) => params.templateModifier?.({ template: modTemplate }) || modTemplate)
+      .then(
+        (modTemplate) =>
+          params.templateModifier?.({ template: modTemplate, req, res }) || modTemplate
+      )
       .then(reqExtended.measure.wrap(measuresServer.RENDER))
 
       .then(reqExtended.measure.wrap(measuresServer.FULL_TIME))

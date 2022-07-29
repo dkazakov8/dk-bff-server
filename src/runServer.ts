@@ -3,6 +3,7 @@ import https from 'https';
 
 import { createServer } from './utils';
 import { handleMeasure } from './middlewares/common/handleMeasure';
+import { handleNoCache } from './middlewares/common/handleNoCache';
 import { handleCompression } from './middlewares/common/handleCompression';
 import { handleJsonRequests } from './middlewares/common/handleJsonRequests';
 import { handleProtectionHeaders } from './middlewares/common/handleProtectionHeaders';
@@ -34,10 +35,13 @@ export const runServer = (params: TypeRunServerParams): Promise<https.Server | h
           handleMeasure,
           handleFileRoutes,
 
+          handleNoCache,
           handleProtectionHeaders,
           handleCompression,
           handleJsonRequests,
           handleUrlencodedRequests,
+
+          ...(params.customMiddlewares || []),
 
           handleGetAppVersion,
           handlePageRoutes,

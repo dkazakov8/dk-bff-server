@@ -1,4 +1,4 @@
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 import helmet from 'helmet';
 
 import { TypeMeasures } from './utils';
@@ -12,7 +12,8 @@ export type TypeRunServerParams = {
 
   https?: boolean;
   injectMeasures?: (params: { template: string; measures: TypeMeasures }) => string;
-  templateModifier?: (params: { template: string }) => string;
+  templateModifier?: (params: { template: string; req: Request; res: Response }) => Promise<string>;
+  customMiddlewares?: Array<TypeMiddleware>;
   compressedFilesGenerated?: boolean;
 };
 

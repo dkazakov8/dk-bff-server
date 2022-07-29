@@ -41,6 +41,8 @@ const setEncodingsForCompressedFiles: TypeMiddleware = (app) => {
 };
 
 export const handleFileRoutes: TypeMiddleware = (app, params) => {
+  app.disable('x-powered-by');
+
   if (params.compressedFilesGenerated) {
     redirectToCompressed(app, params);
     setEncodingsForCompressedFiles(app, params);
